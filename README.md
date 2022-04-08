@@ -1,7 +1,7 @@
-# pokedex
+# Pokédex
 
 
-Projeto Pokédex 
+## Projeto Pokédex 
 
 API de Pokémon: https://pokeapi.co/
 
