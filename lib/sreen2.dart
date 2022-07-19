@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'network.dart';
+import 'consstants.dart';
 
 class PokeContent extends StatefulWidget {
   PokeContent(this.pokemonInput);
@@ -119,120 +120,100 @@ class _PokeContentState extends State<PokeContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red[400],
+      backgroundColor: Colors.red[700],
       appBar: AppBar(
-        title: Text('Pokédex'),
+        title: Text(
+          'Pokédex',
+          style: estiloPokeTitle,
+        ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: Image.asset('images/arrow_left.png'),
-                          iconSize: 20,
-                          onPressed: () {
-                            pokeID = pokeID - 1;
-                            movePokemonId();
-                          },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding:
+                const EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            icon: Image.asset('images/arrow_left.png'),
+                            iconSize: 20,
+                            onPressed: () {
+                              pokeID = pokeID - 1;
+                              movePokemonId();
+                            },
+                          ),
+                          IconButton(
+                            icon: Image.asset('images/arrow_right.png'),
+                            iconSize: 20,
+                            onPressed: () {
+                              pokeID = pokeID + 1;
+                              movePokemonId();
+                            },
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Text(
+                        'This is your Pokémon:',
+                        style: estiloResult,
+                      ),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      Text(
+                        pokeName,
+                        style: estiloPoke,
+                      ),
+                      if (pokeID != 'Not Found')
+                        Image.network(
+                          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$pokeID.png',
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.cover,
                         ),
-                        IconButton(
-                          icon: Image.asset('images/arrow_right.png'),
-                          iconSize: 20,
-                          onPressed: () {
-                            pokeID = pokeID + 1;
-                            movePokemonId();
-                          },
+                      if (pokeID == 'Not Found')
+                        Image.asset(
+                          'images/sory.png',
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.cover,
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Text(
-                      'This is your Pokémon:',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Pokémon Number: $pokeID\n',
+                        style: estiloPokeNumber,
                       ),
-                    ),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    Text(
-                      pokeName,
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.yellowAccent,
+                      Text(
+                        'Type: $pokeType\n',
+                        style: estiloPokeType,
                       ),
-                    ),
-                    if (pokeID != 'Not Found')
-                      Image.network(
-                        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$pokeID.png',
-                        height: 200,
-                        width: 200,
-                        fit: BoxFit.cover,
+                      Text(
+                        'Height: $pokeHeight meters.\n\nWeight: $pokeWeight kg.',
+                        style: estiloPokeData,
                       ),
-                    if (pokeID == 'Not Found')
-                      Image.asset(
-                        'images/sory.png',
-                        height: 200,
-                        width: 200,
-                        fit: BoxFit.cover,
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Text(
-                'Pokémon Number: $pokeID\n',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.lightBlueAccent,
-                ),
-              ),
-              Text(
-                'Type:\n',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.greenAccent,
-                ),
-              ),
-              Text(
-                '$pokeType\n',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.greenAccent,
-                ),
-              ),
-              Text(
-                'Data:\n',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.yellowAccent,
-                ),
-              ),
-              Text(
-                'Height: $pokeHeight meters.\n\nWeight: $pokeWeight kg.',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.yellowAccent,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

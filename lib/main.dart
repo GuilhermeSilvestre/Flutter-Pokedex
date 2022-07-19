@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'sreen2.dart';
+import 'consstants.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,7 +34,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Text('Pokédex'),
+        title: Text(
+          'Pokédex',
+          style: estiloPokeTitle,
+        ),
       ),
       body: SingleChildScrollView(
         child: Screen1(),
@@ -71,16 +75,14 @@ class _Screen1State extends State<Screen1> {
           Center(
             child: Text(
               'FIND YOUR POKÉMON\n\n',
-              style: Theme.of(context).textTheme.headline6,
+              style: findPoke,
               textAlign: TextAlign.center,
             ),
           ),
           Center(
             child: Text(
               'Write a pokémon name or number:',
-              style: TextStyle(
-                fontSize: 16,
-              ),
+              style: writeName,
             ),
           ),
           SizedBox(
@@ -125,7 +127,7 @@ class _Screen1State extends State<Screen1> {
               },
               child: Text(
                 'Search Pokémon',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
           ),
