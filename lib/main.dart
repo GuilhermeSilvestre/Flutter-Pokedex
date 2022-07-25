@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -91,6 +92,13 @@ class _Screen1State extends State<Screen1> {
           Container(
             padding: EdgeInsets.all(30.0),
             child: TextField(
+              inputFormatters: [
+                FilteringTextInputFormatter(
+                  RegExp("[A-Za-z0-9 ]"),
+                  allow: true,
+                ),
+              ],
+              scrollPadding: EdgeInsets.only(bottom: 140),
               style: TextStyle(
                 color: Colors.white,
               ),
